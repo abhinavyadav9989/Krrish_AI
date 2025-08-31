@@ -5,9 +5,11 @@ import { useState, useEffect, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Mic, MicOff, Menu, Volume2, Loader2, MessageCircle, Send, X, WifiOff, Plus } from "lucide-react"
-import type { SpeechRecognition, SpeechSynthesis } from "web-speech-api"
+
 import { chatStorage, type Message, type Conversation } from "@/lib/chat-storage"
 import { InstallPrompt } from "@/components/install-prompt"
+
+
 
 const FILLER_PHRASES = [
   "Hmm, let me check that for you...",
@@ -153,7 +155,7 @@ export default function VoiceAssistant() {
           const voices = speechSynthesis.getVoices()
           console.log(
             "[v0] Available voices:",
-            voices.map((v) => `${v.name} (${v.lang}) - ${v.gender || "unknown"}`),
+            voices.map((v) => `${v.name} (${v.lang}) - ${(v as any).gender || "unknown"}`),
           )
 
           let selectedVoice = null
